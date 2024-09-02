@@ -33,7 +33,7 @@ PORT = 21713
 apSocket = None
 connectionResult = None
 connectionError = None
-versionNumber = "0.1.2"
+versionNumber = "0.1.3"
 apVersion = Version(0, 5, 0)
 
 allMods = ["The%20Button", "Wires", "Keypad", "Capacitor%20Discharge", "Complicated%20Wires", "Knob", "Maze", "Memory", "Morse%20Code", "Password", "Simon%20Says", "Venting%20Gas", "Who%27s%20on%20First", "Wire%20Sequence"]
@@ -110,6 +110,84 @@ def loadPage(module, lib, playerInfo):
     )
     lib[moduleName] = htmlContent
     print("Loaded " + moduleName)
+
+def appendicesPage():
+    ktaneUtilsPage = urllib.request.urlopen("https://ktane.timwi.de/HTML/js/ktane-utils.js").read().decode("utf8")
+    ktaneUtilsPage = ktaneUtilsPage.replace('e.src = "../HTML/js/jquery.3.7.0.min.js"', 'e.src = "https://ktane.timwi.de/HTML/js/jquery.3.7.0.min.js"')
+    return """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1">
+        <title>Appendices — Keep Talking and Nobody Explodes</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://ktane.timwi.de/HTML/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="https://ktane.timwi.de/HTML/css/main.css">
+        <link rel="stylesheet" type="text/css" href="https://ktane.timwi.de/HTML/css/Modules/Ports.css">
+        <script>""" + ktaneUtilsPage + """</script>
+        <style>
+            td img { height: 80px; }
+            .dark td img { filter: invert(87%); }
+            .dark img { filter: invert(87%); }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <div class="page page-bg-07 appendix-indicators">
+                <div class="page-header">
+                    <span class="page-header-doc-title">Keep Talking and Nobody Explodes</span>
+                    <span class="page-header-section-title">Indicators</span>
+                </div>
+                <div class="page-content">
+                    <h2>Appendix A: Indicator Identification Reference</h2>
+                    <p>Labelled indicator lights can be found on the sides of the bomb casing.</p>
+                    <img src="https://ktane.timwi.de/HTML/img/Component/IndicatorWidget.svg" style="height: 5em; display: block; margin: .6em 0 0">
+                    <h3>Common Indicators</h3>
+                    <ul><li>SND</li><li>CLR</li><li>CAR</li><li>IND</li><li>FRQ</li><li>SIG</li><li>NSA</li><li>MSA</li><li>TRN</li><li>BOB</li><li>FRK</li></ul>
+                </div>
+                <div class="page-footer relative-footer">Page 1 of 3</div>
+            </div>
+        </div>
+        <div class="page page-bg-01 appendix-batteries">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes</span>
+                <span class="page-header-section-title">Batteries</span>
+            </div>
+            <div class="page-content">
+                <h2>Appendix B: Battery Identification Reference</h2>
+                <p>Common battery types can be found within enclosures on the sides of the bomb casing.</p>
+                <table style="margin-top: 1em">
+                    <tr><th>Battery</th><th>Type</th></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-batteries/Battery-AA.svg" style="width: 4.09375em; height: 6.18125em"></td><td>AA</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-batteries/Battery-D.svg" style="width: 4.09375em; height: 5.553125em"></td><td>D</td></tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 2 of 3</div>
+        </div>
+        <div class="page page-bg-02 appendix-ports">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes</span>
+                <span class="page-header-section-title">Ports</span>
+            </div>
+            <div class="page-content">
+                <h2>Appendix C: Port Identification Reference</h2>
+                <p>Digital and analog ports can be found on sides of the bomb casing.</p>
+                <table>
+                    <tr><th>Port</th><th>Name</th></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/DVI-D.svg" style="height:60px"></td><td>DVI-D</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/Parallel.svg" style="height:60px"></td><td>Parallel</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/PS2.svg"></td><td>PS/2</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/RJ-45.svg"></td><td>RJ-45</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/Serial.svg" style="height:60px"></td><td>Serial</td></tr>
+                    <tr><td><img src="https://ktane.timwi.de/HTML/img/appendix-ports/Stereo RCA.svg"></td><td>Stereo RCA</td></tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 3 of 3</div>
+        </div>
+    </body>
+    </html>
+    """
 
 def connectionPage(playerInfo):
     return """
@@ -581,7 +659,6 @@ def mainPage(playerInfo):
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-0 col-md-11"></div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="http://localhost:{PORT}/Capacitor" target="_blank">
                                         <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
@@ -624,7 +701,20 @@ def mainPage(playerInfo):
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-0 col-md-11"></div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="http://localhost:{PORT}/Appendices" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Appendices
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1382,16 +1472,32 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         if apConData["slot_data"] is None:
             self.playerInfo["sdRuleSeed"] = 1
             self.playerInfo["sdRandomRuleSeed"] = False
+            self.playerInfo["sdHardlockModules"] = True
         else:
             sd = apConData["slot_data"]
             if "rule_seed" in sd.keys():
-                self.playerInfo["sdRuleSeed"] = sd["rule_seed"] or 1
+                if sd["rule_seed"] is None:
+                    self.playerInfo["sdRuleSeed"] = 1
+                else:
+                    self.playerInfo["sdRuleSeed"] = sd["rule_seed"]
             else:
                 self.playerInfo["sdRuleSeed"] = 1
             if "random_rule_seed" in sd.keys():
-                self.playerInfo["sdRandomRuleSeed"] = sd["random_rule_seed"] or False
+                if sd["random_rule_seed"] is None:
+                    self.playerInfo["sdRandomRuleSeed"] = False
+                else:
+                    self.playerInfo["sdRandomRuleSeed"] = (sd["random_rule_seed"] == 1)
             else:
                 self.playerInfo["sdRandomRuleSeed"] = False
+            if "hardlock_modules" in sd.keys():
+                if sd["hardlock_modules"] is None:
+                    self.playerInfo["sdHardlockModules"] = True
+                else:
+                    self.playerInfo["sdHardlockModules"] = (sd["hardlock_modules"] == 1)
+            else:
+                self.playerInfo["sdHardlockModules"] = True
+        if not self.playerInfo["sdHardlockModules"]:
+            self.playerInfo["unlockedModules"] += ["Capacitor", "VentGas"]
         self.playerInfo["connectionResult"] = "success"
 
     async def _connection_refused(self, errorData, playerInfo):
@@ -1406,6 +1512,7 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         self.playerInfo["slotNumber"] = -1
         self.playerInfo["sdRuleSeed"] = -1
         self.playerInfo["sdRandomRuleSeed"] = False
+        self.playerInfo["sdHardlockModules"] = True
         self.playerInfo["unlockedModules"] = ["TheButton", "Keypad", "Wires"]
         self.playerInfo["connectionResult"] = None
         self.playerInfo["connectionError"] = ["", ""]
@@ -1431,46 +1538,54 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        if self.path == "/":
-            if self.playerInfo["name"] != "":
-                #already connected
-                new_path = "http://localhost:" + str(PORT) + "/MainPage"
-                self.send_response(303)
-                self.send_header("Location", new_path)
-                self._send_cors_headers()
-                self.end_headers()
-                return None
-            self._inner_func()
-            self.wfile.write(connectionPage(self.playerInfo).encode("utf8"))
-        elif self.path == "/MainPage":
-            self._inner_func()
-            if self.playerInfo["name"] == "":
-                #not connected
-                self.wfile.write(notConnectedPage().encode("utf8"))
+        try:
+            if self.path == "/":
+                if self.playerInfo["name"] != "":
+                    #already connected
+                    new_path = "http://localhost:" + str(PORT) + "/MainPage"
+                    self.send_response(303)
+                    self.send_header("Location", new_path)
+                    self._send_cors_headers()
+                    self.end_headers()
+                    return None
+                self._inner_func()
+                self.wfile.write(connectionPage(self.playerInfo).encode("utf8"))
+            elif self.path == "/MainPage":
+                self._inner_func()
+                if self.playerInfo["name"] == "":
+                    #not connected
+                    self.wfile.write(notConnectedPage().encode("utf8"))
+                else:
+                    self.wfile.write(mainPage(self.playerInfo).encode("utf8"))
+            elif (self.path == "/Error") and (self.playerInfo["connectionResult"] == "failure"):
+                self._inner_func()
+                self.wfile.write(errorConnectionPage(self.playerInfo["connectionError"][0], self.playerInfo["connectionError"][1]).encode("utf8"))
+            elif (self.path == "/WrongPost"):
+                self._inner_func()
+                self.wfile.write(badPostPage().encode("utf8"))
+            elif (self.path == "/Appendices"):
+                self._inner_func()
+                self.wfile.write(appendicesPage().encode("utf8"))
+            elif self.path[1:] in allModsLinks:
+                self._inner_func()
+                if self.playerInfo["name"] == "":
+                    #not connected
+                    self.wfile.write(notConnectedPage().encode("utf8"))
+                    return None
+                if self.path[1:] in self.playerInfo["unlockedModules"]:
+                    self.wfile.write(modPages[self.path[1:]].encode("utf8"))
+                else:
+                    #not unlocked
+                    self.wfile.write(notUnlockedPage(self.playerInfo, allModsNames[allModsLinks.index(self.path[1:])]).encode("utf8"))
+                    return None
             else:
-                self.wfile.write(mainPage(self.playerInfo).encode("utf8"))
-        elif (self.path == "/Error") and (self.playerInfo["connectionResult"] == "failure"):
-            self._inner_func()
-            self.wfile.write(errorConnectionPage(self.playerInfo["connectionError"][0], self.playerInfo["connectionError"][1]).encode("utf8"))
-        elif (self.path == "/WrongPost"):
-            self._inner_func()
-            self.wfile.write(badPostPage().encode("utf8"))
-        elif self.path[1:] in allModsLinks:
-            self._inner_func()
-            if self.playerInfo["name"] == "":
-                #not connected
-                self.wfile.write(notConnectedPage().encode("utf8"))
-                return None
-            if self.path[1:] in self.playerInfo["unlockedModules"]:
-                self.wfile.write(modPages[self.path[1:]].encode("utf8"))
-            else:
-                #not unlocked
-                self.wfile.write(notUnlockedPage(self.playerInfo, allModsNames[allModsLinks.index(self.path[1:])]).encode("utf8"))
-                return None
-        else:
-            #invalid link
-            self._inner_func()
-            self.wfile.write(notFoundPage().encode("utf8"))
+                #invalid link
+                self._inner_func()
+                self.wfile.write(notFoundPage().encode("utf8"))
+        except Exception as e:
+            print("An error occured:")
+            print(e)
+            print("Please contact the developper with a screenshot of this message.")
         return None
 
     def do_POST(self):
@@ -1526,6 +1641,7 @@ if __name__ == "__main__":
     playerInfo["cdPass"] = ""
     playerInfo["sdRuleSeed"] = -1
     playerInfo["sdRandomRuleSeed"] = False
+    playerInfo["sdHardlockModules"] = True
     playerInfo["connected"] = False
     playerInfo["unlockedModules"] = ["TheButton", "Keypad", "Wires"]
     playerInfo["connectionResult"] = None

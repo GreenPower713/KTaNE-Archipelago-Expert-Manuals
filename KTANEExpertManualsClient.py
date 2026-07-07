@@ -1009,38 +1009,12 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Button.png">
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Keypad" target="_blank">
-                                            <div class="container module unlocked">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Keypad
-                                                    </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    The Button
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Wires" target="_blank">
-                                            <div class="container module unlocked">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Wires
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-0 col-md-11"></div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Keypad" target="_blank">
@@ -1049,19 +1023,8 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Memory" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Memory" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Memory
-                                                    </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Keypad
                                                 </div>
                                             </div>
                                         </div>
@@ -1074,23 +1037,12 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/WhosonFirst" target="_blank">
-                                            <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Who's on First
-                                                    </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Wires
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-0 col-md-11"></div>
                             </div>
@@ -1101,63 +1053,13 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Maze.png">
-                                <div class="row">
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Complicated Wires
-                                                    </div>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Maze
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/MorseCode" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Morse Code
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Password" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Password
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/WireSequence" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Wire Sequence
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Memory" target="_blank">
@@ -1165,63 +1067,13 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
-                                <div class="row">
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Capacitor" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Capacitor
-                                                    </div>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Memory
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Knob" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Knob" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Knob
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/VentGas" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("VentGas" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Vent Gas
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Appendices" target="_blank">
-                                            <div class="container module unlocked">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Appendices
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/SimonSays" target="_blank">
@@ -1229,20 +1081,158 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Says.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Simon Says
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/WhosonFirst" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Who's on First
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/ComplicatedWires" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Complicated Wires
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/MorseCode" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Morse Code
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Password" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Password
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/WireSequence" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Wire Sequence
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Capacitor" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Capacitor
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Knob" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Knob" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Knob
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/VentGas" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("VentGas" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Vent Gas
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Appendices" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                    Appendices
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-0 col-lg-2"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-0 col-sm-2 col-md-4"></div>
-                        <div class="col-12 col-sm-8 col-md-4">
-                            <form method="POST" id="frm-disconnect">
-                                <input type="hidden" name="post-command" value="disconnect">
-                                <input id="disconnect-button" class="button" type="button" value="Disconnect">
-                            </form>
-                        </div>
-                        <div class="col-0 col-sm-2 col-md-4"></div>
+                    <div class="col-0 col-lg-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-0 col-sm-2 col-md-4"></div>
+                    <div class="col-12 col-sm-8 col-md-4">
+                        <form method="POST" id="frm-disconnect">
+                            <input type="hidden" name="post-command" value="disconnect">
+                            <input id="disconnect-button" class="button" type="button" value="Disconnect">
+                        </form>
                     </div>
+                    <div class="col-0 col-sm-2 col-md-4"></div>
                 </div>
             </body>
         </html>

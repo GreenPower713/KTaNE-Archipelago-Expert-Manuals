@@ -994,22 +994,20 @@ def mainPage(playerInfo):
                         </div>
                         <div class="col-0 col-lg-2"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-0 col-lg-2"></div>
-                        <div class="col-12 col-lg-8">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-0 col-md-11"></div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/TheButton" target="_blank">
-                                            <div class="container module unlocked">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Button.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        The Button
-                                                    </div>
+                    <div class="col-0 col-lg-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-0 col-lg-2"></div>
+                    <div class="col-12 col-lg-8">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-0 col-md-11"></div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/TheButton" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Button.png">
                                                 </div>
                                             </div>
                                         </a>
@@ -1044,17 +1042,12 @@ def mainPage(playerInfo):
                                     </div>
                                     <div class="col-0 col-md-11"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Maze" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Maze" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Maze.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Maze
-                                                    </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Keypad" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
                                                 </div>
                                             </div>
                                         </a>
@@ -1071,18 +1064,15 @@ def mainPage(playerInfo):
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/SimonSays" target="_blank">
-                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonSays" in playerInfo["unlockedModules"]))else ""}">
-                                                <div class="row">
-                                                    <div class="col-3 col-sm-2 col-md-12">
-                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Says.png">
-                                                    </div>
-                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                        Simon Says
-                                                    </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Wires" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
                                                 </div>
                                             </div>
                                         </a>
@@ -1102,6 +1092,15 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-0 col-md-11"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Maze" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Maze" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Maze.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
@@ -1160,6 +1159,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Memory" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Memory" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/Capacitor" target="_blank">
@@ -1218,6 +1223,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/SimonSays" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonSays" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Says.png">
                             </div>
                         </div>
                         <div class="col-0 col-lg-2"></div>
@@ -1421,6 +1432,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/WhosonFirst" target="_blank">
+                                        <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/Maze" target="_blank">
@@ -1479,6 +1496,14 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/ComplicatedWires" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
@@ -1537,6 +1562,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/MorseCode" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/3DMaze" target="_blank">
@@ -1595,6 +1626,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Password" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/BlindMaze" target="_blank">
@@ -1653,6 +1690,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/WireSequence" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/Chess" target="_blank">
@@ -1711,6 +1754,14 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Capacitor" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/FastMath" target="_blank">
@@ -1769,6 +1820,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Knob" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Knob" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/Hexamaze" target="_blank">
@@ -1827,6 +1884,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/VentGas" target="_blank">
+                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("VentGas" in playerInfo["unlockedModules"]))else ""}">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/Radiator" target="_blank">
@@ -1885,6 +1948,12 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-3 padding-correction">
+                                    <a href="/Appendices" target="_blank">
+                                        <div class="container module unlocked">
+                                            <div class="row">
+                                                <div class="col-3 col-sm-2 col-md-12">
+                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
                                         <a href="http://localhost:{PORT}/TicTacToe" target="_blank">
@@ -2624,13 +2693,13 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         if (self.playerInfo["connectionResult"] == "success"):
             setModPages(self.playerInfo)
 
-            new_path = "http://localhost:" + str(PORT) + "/MainPage"
+            new_path = "/MainPage"
             self.send_response(303)
             self.send_header("Location", new_path)
             self._send_cors_headers()
             self.end_headers()
         else:
-            new_path = "http://localhost:" + str(PORT) + "/Error"
+            new_path = "/Error"
             self.send_response(303)
             self.send_header("Location", new_path)
             self._send_cors_headers()
@@ -2777,21 +2846,21 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         self.playerInfo["connectionResult"] = None
         self.playerInfo["connectionError"] = ["", ""]
 
-        new_path = "http://localhost:" + str(PORT)
+        new_path = "/"
         self.send_response(303)
         self.send_header("Location", new_path)
         self._send_cors_headers()
         self.end_headers()
 
     def _return_to_main_page(self, post_data):
-        new_path = "http://localhost:" + str(PORT)
+        new_path = "/"
         self.send_response(303)
         self.send_header("Location", new_path)
         self._send_cors_headers()
         self.end_headers()
 
     def _wrong_post(self, post_data):
-        new_path = "http://localhost:" + str(PORT) + "/WrongPost"
+        new_path = "/WrongPost"
         self.send_response(303)
         self.send_header("Location", new_path)
         self._send_cors_headers()
@@ -2802,7 +2871,7 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             if self.path == "/":
                 if self.playerInfo["name"] != "":
                     #already connected
-                    new_path = "http://localhost:" + str(PORT) + "/MainPage"
+                    new_path = "/MainPage"
                     self.send_response(303)
                     self.send_header("Location", new_path)
                     self._send_cors_headers()

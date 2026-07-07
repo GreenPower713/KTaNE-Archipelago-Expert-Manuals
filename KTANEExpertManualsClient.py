@@ -1,4 +1,5 @@
 from concurrent.futures import Future
+from enum import Enum
 
 import urllib.request
 import webbrowser
@@ -34,12 +35,16 @@ class Version(typing.NamedTuple):
     def as_simple_string(self) -> str:
         return ".".join(str(item) for item in self)
 
+class AdventureMode(Enum):
+    VanillaVanguard = 0
+    PraetorianPact = 1
+
 PORT = 21713
 apSocket = None
 connectionResult = None
 connectionError = None
-versionNumber = "0.2.0"
-apVersion = Version(0, 6, 3)
+versionNumber = "0.3.0"
+apVersion = Version(0, 6, 7)
 
 allModsRepo = {
     "en": {
@@ -56,7 +61,35 @@ allModsRepo = {
         "SimonSays": "Simon%20Says",
         "VentGas": "Venting%20Gas",
         "WhosonFirst": "Who%27s%20on%20First",
-        "WireSequence": "Wire%20Sequence"
+        "WireSequence": "Wire%20Sequence",
+        "Switches": "Switches",
+        "Chess": "Chess",
+        "MouseintheMaze": "Mouse%20In%20The%20Maze",
+        "3DMaze": "3D%20Maze",
+        "TicTacToe": "Tic%20Tac%20Toe",
+        "FollowtheLeader": "Follow%20the%20Leader",
+        "Friendship": "Friendship",
+        "TheBulb": "The%20Bulb",
+        "BlindAlley": "Blind%20Alley",
+        "RockPaperScissorsLizardSpock": "Rock-Paper-Scissors-Lizard-Spock",
+        "Hexamaze": "Hexamaze",
+        "Bitmaps": "Bitmaps",
+        "ColoredSquares": "Colored%20Squares",
+        "SimonScreams": "Simon%20Screams",
+        "WirePlacement": "Wire%20Placement",
+        "DoubleOh": "Double-Oh",
+        "CheapCheckout": "Cheap%20Checkout",
+        "FizzBuzz": "FizzBuzz",
+        "FastMath": "Fast%20Math",
+        "Zoo": "Zoo",
+        "XRay": "X-Ray",
+        "ColorMorse": "Color%20Morse",
+        "BigCircle": "Big%20Circle",
+        "MorseAMaze": "Morse-A-Maze",
+        "PolyhedralMaze": "Polyhedral%20Maze",
+        "BlindMaze": "Blind%20Maze",
+        "Backgrounds": "Backgrounds",
+        "Radiator": "Radiator"
     },
     "cs": {
         "TheButton": "The%20Button%20translated%20(Čeština%20—%20Tlačítko)%20originální%20modul%20(Frank%20%26%20adamcz)",
@@ -182,8 +215,10 @@ allModsRepo = {
     #"th": []
 }
 
-allModsNames = ["The Button", "Wires", "Keypad", "Capacitor", "Complicated Wires", "Knob", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Vent Gas", "Who's on First", "Wire Sequence"]
-allModsLinks = ["TheButton", "Wires", "Keypad", "Capacitor", "ComplicatedWires", "Knob", "Maze", "Memory", "MorseCode", "Password", "SimonSays", "VentGas", "WhosonFirst", "WireSequence"]
+vanModsNames = ["The Button", "Wires", "Keypad", "Capacitor", "Complicated Wires", "Knob", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Vent Gas", "Who's on First", "Wire Sequence"]
+vanModsLinks = ["TheButton", "Wires", "Keypad", "Capacitor", "ComplicatedWires", "Knob", "Maze", "Memory", "MorseCode", "Password", "SimonSays", "VentGas", "WhosonFirst", "WireSequence"]
+modModsNames = ["Switches", "Chess", "Mouse in the Maze", "3D Maze", "Tic Tac Toe", "Follow the Leader", "Friendship", "The Bulb", "Blind Alley", "Rock-Paper-Scissors-Lizard-Spock", "Hexamaze", "Bitmaps", "Colored Squares", "Simon Screams", "Wire Placement", "Double-Oh", "Cheap Checkout", "FizzBuzz", "Fast Math", "Zoo", "X-Ray", "Color Morse", "Big Circle", "Morse-A-Maze", "Polyhedral Maze", "Blind Maze", "Backgrounds", "Radiator"]
+modModsLinks = ["Switches", "Chess", "MouseintheMaze", "3DMaze", "TicTacToe", "FollowtheLeader", "Friendship", "TheBulb", "BlindAlley", "RockPaperScissorsLizardSpock", "Hexamaze", "Bitmaps", "ColoredSquares", "SimonScreams", "WirePlacement", "DoubleOh", "CheapCheckout", "FizzBuzz", "FastMath", "Zoo", "XRay", "ColorMorse", "BigCircle", "MorseAMaze", "PolyhedralMaze", "BlindMaze", "Backgrounds", "Radiator"]
 modPages = []
 
 def loadPage(moduleName, lib, playerInfo):
@@ -262,8 +297,24 @@ def loadPage(moduleName, lib, playerInfo):
         '<script src="https://ktane.timwi.de/HTML/js/jquery.3.7.0.min.js"></script>'
     )
     htmlContent = htmlContent.replace(
+        "<script src='js/jquery.3.7.0.min.js'></script>",
+        "<script src='https://ktane.timwi.de/HTML/js/jquery.3.7.0.min.js'></script>"
+    )
+    htmlContent = htmlContent.replace(
         '<script src="js/Utilities/svg-utils.js"></script>',
         '<script src="https://ktane.timwi.de/HTML/js/Utilities/svg-utils.js"></script>'
+    )
+    htmlContent = htmlContent.replace(
+        "<script src='js/Utilities/svg-utils.js'></script>",
+        "<script src='https://ktane.timwi.de/HTML/js/Utilities/svg-utils.js'></script>"
+    )
+    htmlContent = htmlContent.replace(
+        "<script src='js/Modules/X-Ray.js'></script>",
+        "<script src='https://ktane.timwi.de/HTML/js/Modules/X-Ray.js'></script>"
+    )
+    htmlContent = htmlContent.replace(
+        '<script src="js/Modules/Zoo.js"></script>',
+        '<script src="https://ktane.timwi.de/HTML/js/Modules/Zoo.js"></script>'
     )
     htmlContent = htmlContent.replace(
         'img/Comp',
@@ -280,6 +331,18 @@ def loadPage(moduleName, lib, playerInfo):
     htmlContent = htmlContent.replace(
         'img/Morse',
         'https://ktane.timwi.de/HTML/img/Morse'
+    )
+    htmlContent = htmlContent.replace(
+        'img/Color',
+        'https://ktane.timwi.de/HTML/img/Color'
+    )
+    htmlContent = htmlContent.replace(
+        'img/Friendship',
+        'https://ktane.timwi.de/HTML/img/Friendship'
+    )
+    htmlContent = htmlContent.replace(
+        'img/Zoo',
+        'https://ktane.timwi.de/HTML/img/Zoo'
     )
     htmlContent = htmlContent.replace(
         "console.log('seed = ' + rnd.seed);",
@@ -808,125 +871,128 @@ def connectionPage(playerInfo):
     """
 
 def mainPage(playerInfo):
-    return """
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>AP KTANE - Main Page</title>
-            <meta charset="UTF-8">
+    if playerInfo["sdAdventureMode"] == AdventureMode.VanillaVanguard.value:
+        return """
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>AP KTANE - Main Page</title>
+                <meta charset="UTF-8">
 
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-            <style>
-                body {
-                    background-color: #222326;
-                    color: #FFFFFF;
-                    font-family: "Special Elite";
-                }
-                img.responsive {
-                    height: 90px;
-                }
-                @media (max-width: 767px) {
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        background-color: #222326;
+                        color: #FFFFFF;
+                        font-family: "Special Elite";
+                    }
                     img.responsive {
-                        height: 50px;
+                        height: 90px;
                     }
-                }
+                    @media (max-width: 767px) {
+                        img.responsive {
+                            height: 50px;
+                        }
+                    }
 
-                .button {
-                    background-color: #BA4423;
-                    border-radius: 2.5em;
-                    font-size: 36px;
-                    width: 100%;
-                    margin-top: 5px;
-                    margin-bottom: 10px;
-                }
-                .col-md-11 {
-                    width: 12.499999995%;
-                    flex: 0 0 12.499%;
-                    max-width: 12.499%;
-                }
-                .container {
-                    margin: 0px;
-                    max-width: 100%;
-                }
-                .mod-icon {
-                    margin: auto;
-                    display: block;
-                }
-                .mod-text {
-                    height: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                }
-                @media (max-width: 767px) {
-                    .mod-text {
-                        justify-content: left;
-                        text-align: left;
+                    .button {
+                        background-color: #BA4423;
+                        border-radius: 2.5em;
+                        font-size: 36px;
+                        width: 100%;
+                        margin-top: 5px;
+                        margin-bottom: 10px;
                     }
-                }
-                .module {
-                    background-color: #333334;
-                    color: #000000;
-                    margin: 3px;
-                    padding: 3px;
-                    padding-top: 6px;
-                }
-                .padding-correction {
-                    padding-right: 5px;
-                    padding-left: 5px;
-                }
-                .title-icon {
-                    max-height: 100px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 100%;
-                    object-fit: contain;
-                }
-                .unlocked {
-                    background-color: #666666 !important;
-                    color: #FFFFFF !important;
-                }
-                .username {
-                    font-size: 24px;
-                    text-align: center;
-                    width: 100%;
-                    display: block;
-                }
-            </style>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.getElementById("disconnect-button").addEventListener("click", function() {
-                        document.getElementById("frm-disconnect").submit();
+                    .col-md-11 {
+                        width: 12.499999995%;
+                        flex: 0 0 12.499%;
+                        max-width: 12.499%;
+                    }
+                    .container {
+                        margin: 0px;
+                        max-width: 100%;
+                    }
+                    .mod-icon {
+                        margin: auto;
+                        display: block;
+                    }
+                    .mod-text {
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                    }
+                    @media (max-width: 767px) {
+                        .mod-text {
+                            justify-content: left;
+                            text-align: left;
+                        }
+                    }
+                    .module {
+                        background-color: #333334;
+                        color: #000000;
+                        margin: 3px;
+                        padding: 3px;
+                        padding-top: 6px;
+                    }
+                    .padding-correction {
+                        padding-right: 5px;
+                        padding-left: 5px;
+                    }
+                    .title-icon {
+                        max-height: 100px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                    .unlocked {
+                        background-color: #666666 !important;
+                        color: #FFFFFF !important;
+                    }
+                    .username {
+                        font-size: 24px;
+                        text-align: center;
+                        width: 100%;
+                        display: block;
+                    }
+                </style>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.getElementById("disconnect-button").addEventListener("click", function() {
+                            document.getElementById("frm-disconnect").submit();
+                        });
+
+                        """ + ("refreshPage();" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 14)) else "") + """
                     });
 
-                    """ + ("refreshPage();" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 14)) else "") + """
-                });
-
-                """ + ("""function refreshPage() {
-                    setTimeout(function() {
-                        location.reload();
-                    }, 15000);
-                }""" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 14)) else "") + """
-            </script>
-        </head>"""+f"""
-        <body>
-            <div class="container">
-                <div class="row">
-                    <div class="col-0 col-lg-2"></div>
-                    <div class="col-12 col-sm-6 col-lg-4 my-auto">
-                        <img class="title-icon" src="https://archipelago.gg/static/static/branding/header-logo.svg" alt="AP logo">
+                    """ + ("""function refreshPage() {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 15000);
+                    }""" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 14)) else "") + """
+                </script>
+            </head>"""+f"""
+            <body>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-0 col-lg-2"></div>
+                        <div class="col-12 col-sm-6 col-lg-4 my-auto">
+                            <img class="title-icon" src="https://archipelago.gg/static/static/branding/header-logo.svg" alt="AP logo">
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4 my-auto">
+                            <img class="title-icon" src="https://www.bombmanual.com/img/header.png" alt="KTANE logo">
+                        </div>
+                        <div class="col-0 col-lg-2"></div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-4 my-auto">
-                        <img class="title-icon" src="https://www.bombmanual.com/img/header.png" alt="KTANE logo">
-                    </div>
-                    <div class="col-0 col-lg-2"></div>
-                </div>
-                <div class="row">
-                    <div class="col-0 col-lg-2"></div>
-                    <div class="col-12 col-lg-8">
-                        <span class="username">{playerInfo["name"]}</span>
+                    <div class="row">
+                        <div class="col-0 col-lg-2"></div>
+                        <div class="col-12 col-lg-8">
+                            <span class="username">{playerInfo["name"]}</span>
+                        </div>
+                        <div class="col-0 col-lg-2"></div>
                     </div>
                     <div class="col-0 col-lg-2"></div>
                 </div>
@@ -943,12 +1009,38 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Button.png">
                                                 </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    The Button
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Keypad" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Keypad
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Wires" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Wires
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-0 col-md-11"></div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Keypad" target="_blank">
@@ -957,8 +1049,19 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
                                                 </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Keypad
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Memory" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Memory" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Memory
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -971,12 +1074,23 @@ def mainPage(playerInfo):
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
                                                 </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Wires
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/WhosonFirst" target="_blank">
+                                            <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Who's on First
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-0 col-md-11"></div>
                             </div>
@@ -987,13 +1101,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Maze.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Maze
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Complicated Wires
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/MorseCode" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Morse Code
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Password" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Password
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/WireSequence" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Wire Sequence
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Memory" target="_blank">
@@ -1001,13 +1165,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Memory
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Capacitor" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Capacitor
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Knob" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Knob" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Knob
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/VentGas" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("VentGas" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Vent Gas
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Appendices" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Appendices
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/SimonSays" target="_blank">
@@ -1015,13 +1229,208 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Says.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Simon Says
+                            </div>
+                        </div>
+                        <div class="col-0 col-lg-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-0 col-sm-2 col-md-4"></div>
+                        <div class="col-12 col-sm-8 col-md-4">
+                            <form method="POST" id="frm-disconnect">
+                                <input type="hidden" name="post-command" value="disconnect">
+                                <input id="disconnect-button" class="button" type="button" value="Disconnect">
+                            </form>
+                        </div>
+                        <div class="col-0 col-sm-2 col-md-4"></div>
+                    </div>
+                </div>
+            </body>
+        </html>
+        """
+    else:
+        return """
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>AP KTANE - Main Page</title>
+                <meta charset="UTF-8">
+
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        background-color: #222326;
+                        color: #FFFFFF;
+                        font-family: "Special Elite";
+                    }
+                    img.responsive {
+                        height: 90px;
+                    }
+                    @media (max-width: 767px) {
+                        img.responsive {
+                            height: 50px;
+                        }
+                    }
+
+                    .button {
+                        background-color: #BA4423;
+                        border-radius: 2.5em;
+                        font-size: 36px;
+                        width: 100%;
+                        margin-top: 5px;
+                        margin-bottom: 10px;
+                    }
+                    .col-md-11 {
+                        width: 12.499999995%;
+                        flex: 0 0 12.499%;
+                        max-width: 12.499%;
+                    }
+                    .container {
+                        margin: 0px;
+                        max-width: 100%;
+                    }
+                    .mod-icon {
+                        margin: auto;
+                        display: block;
+                    }
+                    .mod-text {
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                    }
+                    @media (max-width: 767px) {
+                        .mod-text {
+                            justify-content: left;
+                            text-align: left;
+                        }
+                    }
+                    .module {
+                        background-color: #333334;
+                        color: #000000;
+                        margin: 3px;
+                        padding: 3px;
+                        padding-top: 6px;
+                    }
+                    .padding-correction {
+                        padding-right: 5px;
+                        padding-left: 5px;
+                    }
+                    .title-icon {
+                        max-height: 100px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                    .unlocked {
+                        background-color: #666666 !important;
+                        color: #FFFFFF !important;
+                    }
+                    .username {
+                        font-size: 24px;
+                        text-align: center;
+                        width: 100%;
+                        display: block;
+                    }
+                </style>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.getElementById("disconnect-button").addEventListener("click", function() {
+                            document.getElementById("frm-disconnect").submit();
+                        });
+
+                        """ + ("refreshPage();" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 42)) else "") + """
+                    });
+
+                    """ + ("""function refreshPage() {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 15000);
+                    }""" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and (len(playerInfo["unlockedModules"]) < 42)) else "") + """
+                </script>
+            </head>"""+f"""
+            <body>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-0 col-lg-2"></div>
+                        <div class="col-12 col-sm-6 col-lg-4 my-auto">
+                            <img class="title-icon" src="https://archipelago.gg/static/static/branding/header-logo.svg" alt="AP logo">
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4 my-auto">
+                            <img class="title-icon" src="https://www.bombmanual.com/img/header.png" alt="KTANE logo">
+                        </div>
+                        <div class="col-0 col-lg-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-0 col-lg-2"></div>
+                        <div class="col-12 col-lg-8">
+                            <span class="username">{playerInfo["name"]}</span>
+                        </div>
+                        <div class="col-0 col-lg-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-0 col-lg-2"></div>
+                        <div class="col-12 col-lg-8">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/TheButton" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Button.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        The Button
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Keypad" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Keypad.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Keypad
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Wires" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wires.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Wires
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Appendices" target="_blank">
+                                            <div class="container module unlocked">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Appendices
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/WhosonFirst" target="_blank">
@@ -1029,13 +1438,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Who's on First
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Maze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Maze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Maze
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Memory" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Memory" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Memory.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Memory
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/SimonSays" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonSays" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Says.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Simon Says
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/WhosonFirst" target="_blank">
+                                            <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Who's on First
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -1045,13 +1504,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Complicated Wires
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Complicated Wires
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/MorseCode" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Morse Code
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Password" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Password
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/WireSequence" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Wire Sequence
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/MorseCode" target="_blank">
@@ -1059,13 +1568,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Morse Code
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/3DMaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("3DMaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/3D%20Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        3D Maze
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Backgrounds" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Backgrounds" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Backgrounds.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Backgrounds
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/BigCircle" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BigCircle" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Big%20Circle.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Big Circle
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/BlindAlley" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BlindAlley" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Blind%20Alley.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Blind Alley
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Password" target="_blank">
@@ -1073,13 +1632,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Password
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/BlindMaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BlindMaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Blind%20Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Blind Maze
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Bitmaps" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Bitmaps" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Bitmaps.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Bitmaps
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/TheBulb" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("TheBulb" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/The%20Bulb.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        The Bulb
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/CheapCheckout" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("CheapCheckout" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Cheap%20Checkout.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Cheap Checkout
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/WireSequence" target="_blank">
@@ -1087,13 +1696,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Wire Sequence
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Chess" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Chess" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Chess.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Chess
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/ColoredSquares" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ColoredSquares" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Colored%20Squares.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Colored Squares
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/ColorMorse" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ColorMorse" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Color%20Morse.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Color Morse
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/DoubleOh" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("DoubleOh" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Double-Oh.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Double-Oh
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -1103,13 +1762,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Capacitor
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/FastMath" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FastMath" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Fast%20Math.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Fast Math
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/FizzBuzz" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FizzBuzz" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/FizzBuzz.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        FizzBuzz
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/FollowtheLeader" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FollowtheLeader" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Follow%20the%20Leader.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Follow the Leader
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Friendship" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Friendship" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Friendship.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Friendship
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Knob" target="_blank">
@@ -1117,13 +1826,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Knob
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Hexamaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Hexamaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Hexamaze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Hexamaze
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/MorseAMaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseAMaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse-A-Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Morse-A-Maze
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/MouseintheMaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MouseintheMaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Mouse%20In%20The%20Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Mouse in the Maze
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/PolyhedralMaze" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("PolyhedralMaze" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Polyhedral%20Maze.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Polyhedral Maze
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/VentGas" target="_blank">
@@ -1131,13 +1890,63 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Vent Gas
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Radiator" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Radiator" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Radiator.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Radiator
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/RockPaperScissorsLizardSpock" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("RockPaperScissorsLizardSpock" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Rock-Paper-Scissors-Lizard-Spock.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Rock-Paper-Scissors-Lizard-Spock
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/SimonScreams" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonScreams" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Simon%20Screams.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Simon Screams
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Switches" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Switches" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Switches.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Switches
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-3 padding-correction">
                                     <a href="/Appendices" target="_blank">
@@ -1145,33 +1954,82 @@ def mainPage(playerInfo):
                                             <div class="row">
                                                 <div class="col-3 col-sm-2 col-md-12">
                                                     <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
-                                                </div>
-                                                <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
-                                                    Appendices
+                                <div class="row">
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/TicTacToe" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("TicTacToe" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Tic%20Tac%20Toe.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Tic Tac Toe
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/WirePlacement" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WirePlacement" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Placement.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Wire Placement
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/XRay" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("XRay" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/X-Ray.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        X-Ray
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-3 padding-correction">
+                                        <a href="http://localhost:{PORT}/Zoo" target="_blank">
+                                            <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Zoo" in playerInfo["unlockedModules"]))else ""}">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-2 col-md-12">
+                                                        <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Zoo.png">
+                                                    </div>
+                                                    <div class="col-9 col-sm-10 col-md-12 my-auto mod-text">
+                                                        Zoo
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-0 col-lg-2"></div>
                     </div>
-                    <div class="col-0 col-lg-2"></div>
-                </div>
-                <div class="row">
-                    <div class="col-0 col-sm-2 col-md-4"></div>
-                    <div class="col-12 col-sm-8 col-md-4">
-                        <form method="POST" id="frm-disconnect">
-                            <input type="hidden" name="post-command" value="disconnect">
-                            <input id="disconnect-button" class="button" type="button" value="Disconnect">
-                        </form>
+                    <div class="row">
+                        <div class="col-0 col-sm-2 col-md-4"></div>
+                        <div class="col-12 col-sm-8 col-md-4">
+                            <form method="POST" id="frm-disconnect">
+                                <input type="hidden" name="post-command" value="disconnect">
+                                <input id="disconnect-button" class="button" type="button" value="Disconnect">
+                            </form>
+                        </div>
+                        <div class="col-0 col-sm-2 col-md-4"></div>
                     </div>
-                    <div class="col-0 col-sm-2 col-md-4"></div>
                 </div>
-            </div>
-        </body>
-    </html>
-    """
+            </body>
+        </html>
+        """
 
 def notUnlockedPage(playerInfo, module):
     return """
@@ -1774,13 +2632,23 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         linkList = ["ComplicatedWires", "Maze", "Memory", "MorseCode", "Password", "SimonSays", "WhosonFirst", "WireSequence", "Capacitor", "Knob", "VentGas"]
         for item in itemData["items"]:
             itemId = item["item"]
-            if (itemId < 71301001) or (itemId > 71301011):
-                #not a module
+            adaptedItemId = 0
+            isModded = False
+            if (itemId > 71301000) and (itemId < 71301012):
+                adaptedItemId = itemId - 71301001
+            elif (itemId > 71301015) and (itemId < 71301044):
+                isModded = True
+                adaptedItemId = itemId - 71301016
+            else:
                 continue
-            adaptedItemId = itemId - 71301001
-            if (linkList[adaptedItemId] not in playerInfo["unlockedModules"]):
-                print(f"Received Module {moduleList[adaptedItemId]}")
-                playerInfo["unlockedModules"] += [linkList[adaptedItemId]]
+            if not isModded:
+                if (linkList[adaptedItemId] not in playerInfo["unlockedModules"]):
+                    print(f"Received Module {moduleList[adaptedItemId]}")
+                    playerInfo["unlockedModules"] += [linkList[adaptedItemId]]
+            else:
+                if (modModsLinks[adaptedItemId] not in playerInfo["unlockedModules"]):
+                    print(f"Received Module {modModsNames[adaptedItemId]}")
+                    playerInfo["unlockedModules"] += [modModsLinks[adaptedItemId]]
 
     def _connect(self, post_data):
         serverUrl = ""
@@ -1914,6 +2782,7 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             self.playerInfo["sdRuleSeed"] = 1
             self.playerInfo["sdRandomRuleSeed"] = False
             self.playerInfo["sdHardlockModules"] = True
+            self.playerInfo["sdAdventureMode"] = AdventureMode.VanillaVanguard.value
             self.playerInfo["sdLanguage"] = "en"
         else:
             sd = apConData["slot_data"]
@@ -1938,6 +2807,13 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.playerInfo["sdHardlockModules"] = (sd["hardlock_modules"] == 1)
             else:
                 self.playerInfo["sdHardlockModules"] = True
+            if "adventure_mode" in sd.keys():
+                if sd["adventure_mode"] is None:
+                    self.playerInfo["sdAdventureMode"] = AdventureMode.VanillaVanguard.value
+                else:
+                    self.playerInfo["sdAdventureMode"] = sd["adventure_mode"]
+            else:
+                self.playerInfo["sdAdventureMode"] = AdventureMode.VanillaVanguard.value
             if "manuals_language" in sd.keys():
                 if sd["manuals_language"] is None:
                     self.playerInfo["sdLanguage"] = "en"
@@ -1945,7 +2821,9 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.playerInfo["sdLanguage"] = list(allModsRepo.keys())[sd["manuals_language"]]
             else:
                 self.playerInfo["sdLanguage"] = "en"
-        if not self.playerInfo["sdHardlockModules"]:
+        if self.playerInfo["sdAdventureMode"] == AdventureMode.PraetorianPact.value:
+            self.playerInfo["unlockedModules"] += [x for x in vanModsLinks if x not in self.playerInfo["unlockedModules"]]
+        elif not self.playerInfo["sdHardlockModules"]:
             self.playerInfo["unlockedModules"] += ["Capacitor", "VentGas"]
         self.playerInfo["connectionResult"] = "success"
 
@@ -1962,6 +2840,7 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         self.playerInfo["sdRuleSeed"] = -1
         self.playerInfo["sdRandomRuleSeed"] = False
         self.playerInfo["sdHardlockModules"] = True
+        self.playerInfo["sdAdventureMode"] = AdventureMode.VanillaVanguard.value
         self.playerInfo["sdLanguage"] = "en"
         self.playerInfo["unlockedModules"] = ["TheButton", "Keypad", "Wires"]
         self.playerInfo["connectionResult"] = None
@@ -2016,7 +2895,7 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             elif (self.path == "/Appendices"):
                 self._inner_func()
                 self.wfile.write(appendicesPage(self.playerInfo["sdLanguage"]).encode("utf8"))
-            elif self.path[1:] in allModsLinks:
+            elif self.path[1:] in vanModsLinks:
                 self._inner_func()
                 if self.playerInfo["name"] == "":
                     #not connected
@@ -2026,7 +2905,19 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.wfile.write(modPages[self.path[1:]].encode("utf8"))
                 else:
                     #not unlocked
-                    self.wfile.write(notUnlockedPage(self.playerInfo, allModsNames[allModsLinks.index(self.path[1:])]).encode("utf8"))
+                    self.wfile.write(notUnlockedPage(self.playerInfo, vanModsNames[vanModsLinks.index(self.path[1:])]).encode("utf8"))
+                    return None
+            elif self.path[1:] in modModsLinks and self.playerInfo["sdAdventureMode"] == AdventureMode.PraetorianPact.value:
+                self._inner_func()
+                if self.playerInfo["name"] == "":
+                    #not connected
+                    self.wfile.write(notConnectedPage().encode("utf8"))
+                    return None
+                if self.path[1:] in self.playerInfo["unlockedModules"]:
+                    self.wfile.write(modPages[self.path[1:]].encode("utf8"))
+                else:
+                    #not unlocked
+                    self.wfile.write(notUnlockedPage(self.playerInfo, modModsNames[modModsLinks.index(self.path[1:])]).encode("utf8"))
                     return None
             else:
                 #invalid link
@@ -2062,10 +2953,15 @@ def setModPages(playerInfo):
     global modPages
     modPages = multiprocessing.Manager().dict()
     threadList = []
-    for module in allModsLinks:
+    for module in vanModsLinks:
         p = multiprocessing.Process(target=loadPage, args=(module, modPages, playerInfo))
         p.start()
         threadList.append(p)
+    if playerInfo["sdAdventureMode"] == AdventureMode.PraetorianPact.value:
+        for module in modModsLinks:
+            p = multiprocessing.Process(target=loadPage, args=(module, modPages, playerInfo))
+            p.start()
+            threadList.append(p)
 
     for p in threadList:
         p.join()
@@ -2092,6 +2988,7 @@ if __name__ == "__main__":
     playerInfo["sdRuleSeed"] = -1
     playerInfo["sdRandomRuleSeed"] = False
     playerInfo["sdHardlockModules"] = True
+    playerInfo["sdAdventureMode"] = AdventureMode.VanillaVanguard.value
     playerInfo["sdLanguage"] = "en"
     playerInfo["connected"] = False
     playerInfo["unlockedModules"] = ["TheButton", "Keypad", "Wires"]

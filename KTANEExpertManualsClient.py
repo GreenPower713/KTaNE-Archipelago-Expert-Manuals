@@ -1366,7 +1366,7 @@ def mainPage(playerInfo):
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/TheButton" target="_blank">
+                                        <a href="/TheButton" target="_blank">
                                             <div class="container module unlocked">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1380,7 +1380,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Keypad" target="_blank">
+                                        <a href="/Keypad" target="_blank">
                                             <div class="container module unlocked">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1394,7 +1394,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Wires" target="_blank">
+                                        <a href="/Wires" target="_blank">
                                             <div class="container module unlocked">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1408,7 +1408,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Appendices" target="_blank">
+                                        <a href="/Appendices" target="_blank">
                                             <div class="container module unlocked">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1422,15 +1422,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/WhosonFirst" target="_blank">
-                                        <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Who%27s%20on%20First.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Maze" target="_blank">
+                                        <a href="/Maze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Maze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1444,7 +1438,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Memory" target="_blank">
+                                        <a href="/Memory" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Memory" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1458,7 +1452,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/SimonSays" target="_blank">
+                                        <a href="/SimonSays" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonSays" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1472,7 +1466,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/WhosonFirst" target="_blank">
+                                        <a href="/WhosonFirst" target="_blank">
                                             <div class="container module  {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WhosonFirst" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1486,17 +1480,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/ComplicatedWires" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Complicated%20Wires.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/ComplicatedWires" target="_blank">
+                                        <a href="/ComplicatedWires" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ComplicatedWires" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1510,7 +1496,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/MorseCode" target="_blank">
+                                        <a href="/MorseCode" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1524,7 +1510,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Password" target="_blank">
+                                        <a href="/Password" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1538,7 +1524,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/WireSequence" target="_blank">
+                                        <a href="/WireSequence" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1552,15 +1538,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/MorseCode" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseCode" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Morse%20Code.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/3DMaze" target="_blank">
+                                        <a href="/3DMaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("3DMaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1574,7 +1554,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Backgrounds" target="_blank">
+                                        <a href="/Backgrounds" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Backgrounds" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1588,7 +1568,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/BigCircle" target="_blank">
+                                        <a href="/BigCircle" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BigCircle" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1602,7 +1582,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/BlindAlley" target="_blank">
+                                        <a href="/BlindAlley" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BlindAlley" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1616,15 +1596,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/Password" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Password" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Password.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/BlindMaze" target="_blank">
+                                        <a href="/BlindMaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("BlindMaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1638,7 +1612,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Bitmaps" target="_blank">
+                                        <a href="/Bitmaps" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Bitmaps" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1652,7 +1626,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/TheBulb" target="_blank">
+                                        <a href="/TheBulb" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("TheBulb" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1666,7 +1640,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/CheapCheckout" target="_blank">
+                                        <a href="/CheapCheckout" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("CheapCheckout" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1680,15 +1654,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/WireSequence" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WireSequence" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Wire%20Sequence.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Chess" target="_blank">
+                                        <a href="/Chess" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Chess" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1702,7 +1670,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/ColoredSquares" target="_blank">
+                                        <a href="/ColoredSquares" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ColoredSquares" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1716,7 +1684,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/ColorMorse" target="_blank">
+                                        <a href="/ColorMorse" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("ColorMorse" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1730,7 +1698,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/DoubleOh" target="_blank">
+                                        <a href="/DoubleOh" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("DoubleOh" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1744,17 +1712,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/Capacitor" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Capacitor" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Capacitor%20Discharge.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/FastMath" target="_blank">
+                                        <a href="/FastMath" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FastMath" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1768,7 +1728,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/FizzBuzz" target="_blank">
+                                        <a href="/FizzBuzz" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FizzBuzz" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1782,7 +1742,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/FollowtheLeader" target="_blank">
+                                        <a href="/FollowtheLeader" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("FollowtheLeader" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1796,7 +1756,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Friendship" target="_blank">
+                                        <a href="/Friendship" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Friendship" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1810,15 +1770,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/Knob" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Knob" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Knob.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Hexamaze" target="_blank">
+                                        <a href="/Hexamaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Hexamaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1832,7 +1786,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/MorseAMaze" target="_blank">
+                                        <a href="/MorseAMaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MorseAMaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1846,7 +1800,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/MouseintheMaze" target="_blank">
+                                        <a href="/MouseintheMaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("MouseintheMaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1860,7 +1814,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/PolyhedralMaze" target="_blank">
+                                        <a href="/PolyhedralMaze" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("PolyhedralMaze" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1874,15 +1828,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/VentGas" target="_blank">
-                                        <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("VentGas" in playerInfo["unlockedModules"]))else ""}">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/Icons/Venting%20Gas.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Radiator" target="_blank">
+                                        <a href="/Radiator" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Radiator" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1896,7 +1844,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/RockPaperScissorsLizardSpock" target="_blank">
+                                        <a href="/RockPaperScissorsLizardSpock" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("RockPaperScissorsLizardSpock" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1910,7 +1858,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/SimonScreams" target="_blank">
+                                        <a href="/SimonScreams" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("SimonScreams" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1924,7 +1872,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Switches" target="_blank">
+                                        <a href="/Switches" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Switches" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1938,15 +1886,9 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 padding-correction">
-                                    <a href="/Appendices" target="_blank">
-                                        <div class="container module unlocked">
-                                            <div class="row">
-                                                <div class="col-3 col-sm-2 col-md-12">
-                                                    <img class="mod-icon responsive" src="https://ktane.timwi.de/HTML/img/manual.png">
                                 <div class="row">
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/TicTacToe" target="_blank">
+                                        <a href="/TicTacToe" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("TicTacToe" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1960,7 +1902,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/WirePlacement" target="_blank">
+                                        <a href="/WirePlacement" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("WirePlacement" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1974,7 +1916,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/XRay" target="_blank">
+                                        <a href="/XRay" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("XRay" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">
@@ -1988,7 +1930,7 @@ def mainPage(playerInfo):
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-3 padding-correction">
-                                        <a href="http://localhost:{PORT}/Zoo" target="_blank">
+                                        <a href="/Zoo" target="_blank">
                                             <div class="container module {"unlocked" if ((playerInfo is not None) and ("unlockedModules" in playerInfo.keys()) and ("Zoo" in playerInfo["unlockedModules"]))else ""}">
                                                 <div class="row">
                                                     <div class="col-3 col-sm-2 col-md-12">

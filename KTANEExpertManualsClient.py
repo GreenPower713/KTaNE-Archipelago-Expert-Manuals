@@ -348,6 +348,19 @@ def loadPage(moduleName, lib, playerInfo):
         "console.log('seed = ' + rnd.seed);",
         ""
     )
+    if (playerInfo["sdRandomRuleSeed"]):
+        htmlContent = htmlContent.replace(
+            "console.log(`[Password rule seed] Seed: ${rnd.seed}",
+            "console.log(`[Password rule seed] Seed: Archipelago"
+        )
+        htmlContent = htmlContent.replace(
+            "console.log(`[Morse Code rule seed] Seed: ${rnd.seed}",
+            "console.log(`[Morse Code rule seed] Seed: Archipelago"
+        )
+        htmlContent = htmlContent.replace(
+            "console.log(`[Morse-A-Maze rule seed] Seed: ${rnd.seed}",
+            "console.log(`[Morse-A-Maze rule seed] Seed: Archipelago"
+        )
     lib[moduleName] = htmlContent
     print("Loaded " + moduleName)
 

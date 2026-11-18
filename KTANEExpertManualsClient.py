@@ -1,4 +1,3 @@
-from concurrent.futures import Future
 from enum import Enum
 
 import urllib.request
@@ -15,6 +14,10 @@ import json
 import typing
 
 import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
+from functools import lru_cache
+from http.server import ThreadingHTTPServer
 
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 #ssl.SSLContext.load_cert_chain()
@@ -221,6 +224,11 @@ modModsNames = ["Switches", "Chess", "Mouse in the Maze", "3D Maze", "Tic Tac To
 modModsLinks = ["Switches", "Chess", "MouseintheMaze", "3DMaze", "TicTacToe", "FollowtheLeader", "Friendship", "TheBulb", "BlindAlley", "RockPaperScissorsLizardSpock", "Hexamaze", "Bitmaps", "ColoredSquares", "SimonScreams", "WirePlacement", "DoubleOh", "CheapCheckout", "FizzBuzz", "FastMath", "Zoo", "XRay", "ColorMorse", "BigCircle", "MorseAMaze", "PolyhedralMaze", "BlindMaze", "Backgrounds", "Radiator"]
 modPages = []
 
+@lru_cache(maxsize=None)
+def fetchText(url) -> str:
+    with urllib.request.urlopen(url, context=ssl_context) as r:
+        return r.read().decode("utf8")
+
 def loadPage(moduleName, lib, playerInfo):
     module = ""
     if moduleName in list(allModsRepo[playerInfo["sdLanguage"]].keys()):
@@ -236,16 +244,15 @@ def loadPage(moduleName, lib, playerInfo):
     encoded_query = urllib.parse.quote(parts.query, safe="=&")
     encodedFullUrl = urllib.parse.urlunsplit((parts.scheme, parts.netloc, encoded_path, encoded_query, parts.fragment))
 
-    modPage = urllib.request.urlopen(encodedFullUrl, context=ssl_context)
-    htmlContent = modPage.read().decode("utf8")
-    modPage.close()
+    modPage = fetchText(encodedFullUrl)
+    htmlContent = modPage
 
     htmlContent = htmlContent.replace(
         '<link rel="stylesheet" type="text/css" href="css/font.css">',
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">'
     )
     #CORS problem
-    #russianFontCss = urllib.request.urlopen("https://ktane.timwi.de/HTML/css/font-cyrillic.css", context=ssl_context).read().decode("utf8")
+    #russianFontCss = fetchText("https://ktane.timwi.de/HTML/css/font-cyrillic.css")
     #russianFontCss = russianFontCss.replace("..", "https://ktane.timwi.de/HTML")
     #htmlContent = htmlContent.replace(
     #    '<link rel="stylesheet" type="text/css" href="css/font-cyrillic.css">',
@@ -271,13 +278,13 @@ def loadPage(moduleName, lib, playerInfo):
         '<link rel="stylesheet" type="text/css" href="css/main.css">',
         '<link rel="stylesheet" type="text/css" href="https://ktane.timwi.de/HTML/css/main.css">'
     )
-    ktaneUtilsPage = urllib.request.urlopen("https://ktane.timwi.de/HTML/js/ktane-utils.js", context=ssl_context).read().decode("utf8")
+    ktaneUtilsPage = fetchText("https://ktane.timwi.de/HTML/js/ktane-utils.js")
     ktaneUtilsPage = ktaneUtilsPage.replace('e.src = scriptDir + "jquery.3.7.0.min.js"', 'e.src = "https://ktane.timwi.de/HTML/js/jquery.3.7.0.min.js"')
     htmlContent = htmlContent.replace(
         '<script src="js/ktane-utils.js"></script>',
         '<script>' + ktaneUtilsPage + '</script>'
     )
-    ruleSeedPage = urllib.request.urlopen("https://ktane.timwi.de/HTML/js/ruleseed.js", context=ssl_context).read().decode("utf8")
+    ruleSeedPage = fetchText("https://ktane.timwi.de/HTML/js/ruleseed.js")
     ruleSeedPage = ruleSeedPage.replace("this.seed = seed;", "this.seed = " + str(playerInfo["sdRuleSeed"]) + ";")
     ruleSeedPage = ruleSeedPage.replace('if (/^#(\\d+)$/.exec(window.location.hash) && (RegExp.$1 | 0) !== 1)', 'if (' + str(playerInfo["sdRuleSeed"] > 1).lower() + ')')
     ruleSeedPage = ruleSeedPage.replace('var seed = RegExp.$1 | 0;', 'var seed = ' + str(playerInfo["sdRuleSeed"]) + ";")
@@ -365,7 +372,7 @@ def loadPage(moduleName, lib, playerInfo):
     print("Loaded " + moduleName)
 
 def appendicesPage(lang):
-    ktaneUtilsPage = urllib.request.urlopen("https://ktane.timwi.de/HTML/js/ktane-utils.js", context=ssl_context).read().decode("utf8")
+    ktaneUtilsPage = fetchText("https://ktane.timwi.de/HTML/js/ktane-utils.js")
     ktaneUtilsPage = ktaneUtilsPage.replace('e.src = scriptDir + "jquery.3.7.0.min.js"', 'e.src = "https://ktane.timwi.de/HTML/js/jquery.3.7.0.min.js"')
     appLoc = {
         "en": [
@@ -2632,8 +2639,8 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
 
         asyncio.run_coroutine_threadsafe(self._connect_to_websocket(serverUrl, serverPort, slotName, serverPassword, self.playerInfo), background_loop)
 
-        while (self.playerInfo["connectionResult"] is None):
-            pass
+        while self.playerInfo["connectionResult"] is None:
+            time.sleep(0.05) # TODO Make Global Constant
 
         if (self.playerInfo["connectionResult"] == "success"):
             setModPages(self.playerInfo)
@@ -2896,20 +2903,12 @@ class MyHttpRequestHandler(http.server.BaseHTTPRequestHandler):
 def setModPages(playerInfo):
     print("Loading Manuals")
     global modPages
-    modPages = multiprocessing.Manager().dict()
-    threadList = []
-    for module in vanModsLinks:
-        p = multiprocessing.Process(target=loadPage, args=(module, modPages, playerInfo))
-        p.start()
-        threadList.append(p)
-    if playerInfo["sdAdventureMode"] == AdventureMode.PraetorianPact.value:
-        for module in modModsLinks:
-            p = multiprocessing.Process(target=loadPage, args=(module, modPages, playerInfo))
-            p.start()
-            threadList.append(p)
-
-    for p in threadList:
-        p.join()
+    modPages = {}
+    mods = list(vanModsLinks)
+    if playerInfo["sdAdventureMode"] == AdventureMode.PraetorianPact:
+        mods += modModsLinks
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        list(pool.map(lambda m: loadPage(m, modPages, playerInfo), mods))
 
 def run_server(player_info):
     def handler(*args, **kwargs):
@@ -2940,8 +2939,12 @@ if __name__ == "__main__":
     playerInfo["connectionResult"] = None
     playerInfo["connectionError"] = ["", ""]
 
-    server_process = multiprocessing.Process(target=run_server, args=(playerInfo,))
-    server_process.start()
+    def handler(*args, **kwargs):
+        MyHttpRequestHandler(*args, player_info=playerInfo, **kwargs)
+
+    with ThreadingHTTPServer(("", PORT), handler) as httpd:
+        webbrowser.open(f"http://localhost:{PORT}")
+        httpd.serve_forever()
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
